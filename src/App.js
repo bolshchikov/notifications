@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './app.css';
+
+import Badge from './badge/badge';
+import Notifications from './notifications/notifications';
 
 class App extends Component {
+
+  componentWillMount() {
+    this.setState({
+      isOpened: false
+    });
+  }
+
+  toggle() {
+    this.setState({
+      isOpened: !this.state.isOpened
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="app">
+        <Badge onClick={() => this.toggle() }/>
+        {this.state.isOpened && <Notifications />}
       </div>
     );
   }

@@ -1,0 +1,14 @@
+.notifications {
+  border: 1px solid grey;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-left: -20px;
+  width: 50%;
+}
+
+.notifications-header {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-bottom: 1px solid #ffe38f;
+  padding-bottom: 5px;
+}
