@@ -22,7 +22,11 @@ app.get('/', (req, res) => {
 app.get('/notifications', (req, res) => {
   fetch(`${db}/notifications.json`)
     .then(res => res.json())
-    .then(notifications => res.send(notifications));
+    .then(notifications => {
+      res.send({
+        notifications: Object.keys(notifications).map(id => Object.assign(notifications[id], { id }))
+      })
+    });
 });
 
 app.get('/notifications/:id', (req, res) => {

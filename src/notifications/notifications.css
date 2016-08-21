@@ -12,3 +12,11 @@
   border-bottom: 1px solid #ffe38f;
   padding-bottom: 5px;
 }
+
+.notification-body {
+  margin: 5px;
+}
+
+.notification-mark {
+  float: right;
+}

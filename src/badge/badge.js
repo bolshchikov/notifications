@@ -4,9 +4,14 @@ import './badge.css';
 
 class Badge extends Component {
 
-  calculateUnreadNotification(data) {
-    const unread = Object.keys(data).filter(key => !data[key].read).length;
+  getUnreadNotification(notifications) {
+    const unread = notifications.filter(notification => !notification.read).length;
     this.setState({ unread });
+  }
+
+  getAllNotifications() {
+    return fetch(`http://localhost:3001/notifications`)
+      .then(data => data.json())
   }
 
   setInitialState() {
@@ -17,10 +22,8 @@ class Badge extends Component {
 
   componentWillMount() {
     this.setInitialState();
-
-    fetch(`http://localhost:3001/notifications`)
-      .then(data => data.json())
-      .then(json => this.calculateUnreadNotification(json));
+    this.getAllNotifications()
+      .then(data => this.getUnreadNotification(data.notifications));
   }
 
   render() {
