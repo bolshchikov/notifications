@@ -13,10 +13,35 @@
   padding-bottom: 5px;
 }
 
-.notification-body {
-  margin: 5px;
+.notifications-list {
+  list-style-type: none;
+}
+
+.notification {
+  margin: 21px 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+.notification-title {
+  margin-bottom: 7px;
+}
+
+.notification-title span {
+  font-weight: bold;
+}
+
+.notification-title .notification-date {
+  color: grey;
+  font-weight: 100;
+  font-size: 13px;
 }
 
 .notification-mark {
   float: right;
+}
+
+.notification-body {
+  width: 80%;
+  line-height: 23px;
 }

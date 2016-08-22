@@ -9,7 +9,7 @@ class Notifications extends Component {
   }
 
   sortNotification(notifications) {
-    this.setState({ 
+    this.setState({
       notifications: notifications.sort((a, b) => a.createdAt - b.createdAt)
     })
   }
@@ -39,11 +39,19 @@ class Notifications extends Component {
         </h3>
         <ul className="notifications-list">
           { notifications.map((notification) => {
+            let date = new Date(notification.createdAt);
             return (
-              <li className="notification-body" key={notification.id}>
-                <span>{notification.title}</span>
-                <button className="notification-mark">mark as read</button>  
-              </li>);
+              <li className="notification" key={notification.id}>
+                <div className="notification-title">
+                  <span>{notification.title}</span> | <span className="notification-date">{date.toString()}</span>
+                  <button className="notification-mark">mark as read</button>
+                </div>
+                <div className="notification-body">
+                  {notification.body}
+                </div>
+
+              </li>
+            );
           }) }
         </ul>
       </div>
