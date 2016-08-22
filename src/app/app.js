@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './app.css';
 
-import Badge from './badge/badge';
-import Notifications from './notifications/notifications';
+import Badge from '../badge/badge';
+import Notifications from '../notifications/notifications';
 
 class App extends Component {
 
