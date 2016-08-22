@@ -26,12 +26,8 @@ class Notifications extends Component {
       .then(data => this.sortNotification(data.notifications));
   }
 
-
-
   render() {
-
     const { notifications } = this.state;
-
     return (
       <div className="notifications">
         <h3 className="notifications-header">
@@ -49,7 +45,6 @@ class Notifications extends Component {
                 <div className="notification-body">
                   {notification.body}
                 </div>
-
               </li>
             );
           }) }
