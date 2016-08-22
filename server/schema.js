@@ -21,7 +21,7 @@ const NotificationType = new graphql.GraphQLObjectType({
     read: { type: graphql.GraphQLBoolean },
     sender: {
       type: SenderType,
-      resolve: (notification) => db.getSendersById(notification.senderId)
+      resolve: (notification, args, { loaders }) => loaders.sender.load(notification.senderId)
     }
   }
 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const graphQLHTTP = require('express-graphql');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const DataLoader = require('dataloader');
 
 const schema = require('./schema');
 const db = require('./db');
@@ -17,38 +18,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(graphQLHTTP({
-  schema,
-  graphiql: true
+app.use(graphQLHTTP(() => {
+  const senderLoader = new DataLoader(
+    keys => Promise.all(keys.map(db.getSendersById))
+  );
+  const loaders = {
+    sender: senderLoader
+  };
+  return {
+    context: { loaders },
+    schema,
+    graphiql: true
+  }
 }));
-
-app.get('/', (req, res) => {
-  res.send('hello test');
-});
-
-app.get('/notifications', (req, res) => {
-  db.getAllNotification()
-    .then(notifications => {
-      res.send({
-        notifications: Object.keys(notifications).map(id => Object.assign(notifications[id], { id }))
-      })
-    });
-});
-
-app.get('/notifications/:id', (req, res) => {
-  db.getNotificationById(req.params.id)
-    .then(notification => res.send(notification));
-});
-
-app.get('/senders', (req, res) => {
-  db.getAllSenders()
-    .then(senders => res.send(senders));
-});
-
-app.get('/senders/:id', (req, res) => {
-  db.getSendersById(req.params.id)
-    .then(sender => res.send(sender));
-});
 
 app.listen(PORT, () => {
   console.log(`The server is running at http://localhost:${PORT}/`);
