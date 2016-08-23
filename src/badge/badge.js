@@ -4,15 +4,15 @@ import './badge.css';
 
 class Badge extends Component {
 
-  getUnreadNotification(notifications) {
-    const unread = notifications.filter(notification => !notification.read).length;
-    this.setState({ unread });
-  }
+  // getUnreadNotification(notifications) {
+  //   const unread = notifications.filter(notification => !notification.read).length;
+  //   this.setState({ unread });
+  // }
 
-  getAllNotifications() {
-    return fetch(`http://localhost:3001/notifications`)
-      .then(data => data.json())
-  }
+  // getAllNotifications() {
+  //   return fetch(`http://localhost:3001/notifications`)
+  //     .then(data => data.json())
+  // }
 
   setInitialState() {
     this.setState({
@@ -20,11 +20,11 @@ class Badge extends Component {
     });
   }
 
-  componentWillMount() {
-    this.setInitialState();
-    this.getAllNotifications()
-      .then(data => this.getUnreadNotification(data.notifications));
-  }
+  // componentWillMount() {
+  //   this.setInitialState();
+  //   this.getAllNotifications()
+  //     .then(data => this.getUnreadNotification(data.notifications));
+  // }
 
   render() {
     const { onClick } = this.props;

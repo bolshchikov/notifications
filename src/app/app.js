@@ -1,3 +1,4 @@
+import Relay from 'react-relay';
 import React, { Component } from 'react';
 import './app.css';
 
@@ -28,4 +29,12 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Relay.createContainer(App, {
+  fragments: {
+    unread: () => Relay.QL`
+      fragment on Unread {
+        unread
+      }
+    `
+  }
+});
